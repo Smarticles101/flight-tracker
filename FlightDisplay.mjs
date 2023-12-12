@@ -1,6 +1,8 @@
+import { getFlightSchedule } from "./api";
+
 const flightDisplayHTML = `
 <div>
-<input> <button id="input_submit">Submit</button>
+<input placeholder="flight number"> <button id="input_submit">Submit</button>
 </div>`;
 
 export default class FlightDisplay {
@@ -13,10 +15,13 @@ export default class FlightDisplay {
 
     this.container
       .querySelector("#input_submit")
-      .addEventListener("click", this.submit);
+      .addEventListener("click", this.submit.bind(this));
   }
 
   submit() {
-    console.log("submitted");
+    let flight_code = this.container.querySelector("input").value;
+    this.container.querySelector("input").value = "";
+
+    getFlightSchedule(flight_code).then(r => console.log(r));
   }
 }
