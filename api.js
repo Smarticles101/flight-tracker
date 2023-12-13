@@ -13,3 +13,13 @@ export async function getAirport(airline_iata) {
     `${URL}airports?api_key=${TOKEN}&iata_code=${airline_iata}`
   ).then((resp) => resp.json()).then(resp => resp.response[0]);
 }
+
+export function storeFlight(flight_data) {
+  localStorage.setItem("flightlist", getStoredFlights().push(flight_data));
+}
+
+export function getStoredFlights() {
+  let flights = localStorage.getItem("flightlist");
+  if (flights) return flights;
+  return [];
+}

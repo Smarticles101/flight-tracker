@@ -1,4 +1,4 @@
-import { getFlightSchedule } from "./api";
+import { getFlightSchedule, storeFlight } from "./api";
 
 const flightDisplayHTML = `
 <input placeholder="flight number"> <button id="input_submit">Submit</button>
@@ -48,6 +48,9 @@ export default class FlightDisplay {
     let flight_code = this.container.querySelector("input").value;
     this.container.querySelector("input").value = "";
 
-    getFlightSchedule(flight_code).then(this.updateDisplay.bind(this));
+    getFlightSchedule(flight_code).then(data => {
+      this.updateDisplay.bind(this)
+      storeFlight(data)
+    });
   }
 }
