@@ -15,11 +15,14 @@ export async function getAirport(airline_iata) {
 }
 
 export function storeFlight(flight_data) {
-  localStorage.setItem("flightlist", getStoredFlights().push(flight_data));
+  localStorage.setItem("flightlist", JSON.stringify([flight_data, ...getStoredFlights()]));
 }
 
 export function getStoredFlights() {
-  let flights = localStorage.getItem("flightlist");
+  try {
+  let flights = JSON.parse(localStorage.getItem("flightlist"));
   if (flights) return flights;
+  } catch {}
+
   return [];
 }
