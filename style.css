@@ -165,6 +165,21 @@ button:focus-visible {
   }
 }
 
+.created {
+  animation: create 0.5s forwards;
+}
+
+@keyframes create {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
 /* loading animations */
 .loading-text {
   display: none;

@@ -7,31 +7,32 @@ import {
   updateDisplay,
 } from "./api";
 
-const flightListHTML = ``;
+const flightToHTML = (flight) => `
+<div class="button-container" key=${flight.flight_iata}>
+<button class="collapsible">${flight.flight_iata} at ${flight.dep_time}</button>
+<button class="delete-collapsible">Delete</button>
+</div>
+<div class="collapsible-content">
+
+${FLIGHT_INFO_HTML}
+</div>`;
 
 export default class FlightList {
   constructor(container_element) {
     this.container = container_element;
   }
 
+  addFlight(data) {
+    let html = flightToHTML(data);
+
+    this.container.insertAdjacentHTML("afterbegin", html);
+    this.container.querySelector(".button-container").classList.add("created");
+  }
+
   init() {
     let flights = getStoredFlights();
     console.log(flights);
-    this.container.innerHTML = flights
-      .map(
-        (flight) => `
-        <div class="button-container" key=${flight.flight_iata}>
-    <button class="collapsible">${
-          flight.flight_iata
-        } at ${flight.dep_time}</button>
-        <button class="delete-collapsible">Delete</button>
-        </div>
-      <div class="collapsible-content">
-
-        ${FLIGHT_INFO_HTML}
-      </div>`
-      )
-      .join("");
+    this.container.innerHTML = flights.map(flightToHTML).join("");
 
     let col = this.container.querySelectorAll(".button-container");
 
@@ -48,10 +49,12 @@ export default class FlightList {
             content.style.maxHeight = content.scrollHeight + "px";
           }
         });
-      col[i].querySelector(".delete-collapsible").addEventListener("click", function () {
-        col[i].classList.add("deleted");
-        deleteStoredFlight(flights[i]);
-      });
+      col[i]
+        .querySelector(".delete-collapsible")
+        .addEventListener("click", function () {
+          col[i].classList.add("deleted");
+          deleteStoredFlight(flights[i]);
+        });
     }
   }
 }

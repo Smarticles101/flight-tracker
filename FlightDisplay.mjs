@@ -13,8 +13,9 @@ ${FLIGHT_INFO_HTML}
 </div>`;
 
 export default class FlightDisplay {
-  constructor(container_element) {
+  constructor(container_element, addflightcallback) {
     this.container = container_element;
+    this.addFlightCallback = addflightcallback;
   }
 
   init() {
@@ -36,7 +37,8 @@ export default class FlightDisplay {
       this.container.querySelector(".loading-text").style.display = "none";
       updateDisplay(this.container, data)
       this.container.querySelector(".flight-info-display").style.display = "flex";
-      storeFlight(data)
+      storeFlight(data);
+      this.addFlightCallback(data);
     });
   }
 }
