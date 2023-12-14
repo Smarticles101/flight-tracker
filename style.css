@@ -223,3 +223,11 @@ span[class^="dot-"]{
     opacity: 1;
   }
 }
+
+.flight-info-display {
+  display: flex;
+}
+
+.departing, .arriving {
+  padding: 5px;
+}

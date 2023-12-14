@@ -19,6 +19,7 @@ export default class FlightDisplay {
 
   init() {
     this.container.innerHTML = flightDisplayHTML;
+    this.container.querySelector(".flight-info-display").style.display = "none";
 
     this.container
       .querySelector("#input_submit")
@@ -34,6 +35,7 @@ export default class FlightDisplay {
       // TODO: if no flight, data is undef. handle error
       this.container.querySelector(".loading-text").style.display = "none";
       updateDisplay(this.container, data)
+      this.container.querySelector(".flight-info-display").style.display = "flex";
       storeFlight(data)
     });
   }
