@@ -49,7 +49,7 @@ export default class FlightList {
           }
         });
       col[i].querySelector(".delete-collapsible").addEventListener("click", function () {
-        col[i].style.display = "none";
+        col[i].classList.add("deleted");
         deleteStoredFlight(flights[i]);
       });
     }

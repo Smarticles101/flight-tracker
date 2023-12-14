@@ -135,3 +135,25 @@ button:focus-visible {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
+
+.button-container {
+  transition: max-height 3s ease-in;
+}
+
+.deleted {
+  animation: delete 0.5s forwards;
+}
+
+@keyframes delete {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    display: none;
+  }
+}
