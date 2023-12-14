@@ -4,12 +4,14 @@ const URL = "https://airlabs.co/api/v9/";
 
 export const FLIGHT_INFO_HTML = `<div class="flight-info-display">
 <div class="departing">
+<h3>Departure</h3>
 <p class="airport"></p>
 <p class="terminal"></p>
 <p class="gate"></p>
 <p class="time"></p>
 </div>
 <div class="arriving">
+<h3>Arrival</h3>
 <p class="airport"></p>
 <p class="terminal"></p>
 <p class="gate"></p>
@@ -51,13 +53,13 @@ export function deleteStoredFlight(flight_data) {
 }
 
 export function updateDisplay(container, data) {
-  container.querySelector(".departing .airport").innerHTML = `Departure Airport ${data.dep_iata}`;
-  container.querySelector(".departing .terminal").innerHTML = `Departure Terminal ${data.dep_terminal}`;
-  container.querySelector(".departing .gate").innerHTML = `Departure Gate ${data.dep_gate}`;
-  container.querySelector(".departing .time").innerHTML = `Departure Time ${data.dep_time}`;
+  container.querySelector(".departing .airport").innerHTML = `Airport ${data.dep_iata || "unassigned"}`;
+  container.querySelector(".departing .terminal").innerHTML = `Terminal ${data.dep_terminal || "unassigned"}`;
+  container.querySelector(".departing .gate").innerHTML = `Gate ${data.dep_gate || "unassigned"}`;
+  container.querySelector(".departing .time").innerHTML = `Time ${data.dep_time || "unassigned"}`;
 
-  container.querySelector(".arriving .airport").innerHTML = `Arrival Airport ${data.arr_iata}`;
-  container.querySelector(".arriving .terminal").innerHTML = `Arrival Terminal ${data.arr_terminal}`;
-  container.querySelector(".arriving .gate").innerHTML = `Arrival Gate ${data.arr_gate}`;
-  container.querySelector(".arriving .time").innerHTML = `Arrival Time ${data.arr_time}`;
+  container.querySelector(".arriving .airport").innerHTML = `Airport ${data.arr_iata || "unassigned"}`;
+  container.querySelector(".arriving .terminal").innerHTML = `Terminal ${data.arr_terminal || "unassigned"}`;
+  container.querySelector(".arriving .gate").innerHTML = `Gate ${data.arr_gate || "unassigned"}`;
+  container.querySelector(".arriving .time").innerHTML = `Time ${data.arr_time || "unassigned"}`;
 }

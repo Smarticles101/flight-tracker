@@ -10,8 +10,9 @@ document.querySelector('#app').innerHTML = `
   </div>
 `
 
-const DISPLAY = new FlightDisplay(document.querySelector('#flightdisplay'));
-DISPLAY.init();
 
 const LIST = new FlightList(document.querySelector("#flightlist"));
 LIST.init();
+
+const DISPLAY = new FlightDisplay(document.querySelector('#flightdisplay'), LIST.addFlight.bind(LIST));
+DISPLAY.init();
