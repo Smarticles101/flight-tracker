@@ -42,6 +42,14 @@ export function getStoredFlights() {
   return [];
 }
 
+export function deleteStoredFlight(flight_data) {
+  let flights = getStoredFlights();
+
+  let newflights = flights.filter(f => f.flight_iata !== flight_data.flight_iata && f.dep_time !== flight_data.dep_time);
+
+  localStorage.setItem("flightlist", JSON.stringify(newflights));
+}
+
 export function updateDisplay(container, data) {
   container.querySelector(".departing .airport").innerHTML = `Departure Airport ${data.dep_iata}`;
   container.querySelector(".departing .terminal").innerHTML = `Departure Terminal ${data.dep_terminal}`;
