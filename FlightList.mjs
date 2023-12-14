@@ -27,11 +27,32 @@ export default class FlightList {
 
     this.container.insertAdjacentHTML("afterbegin", html);
     this.container.querySelector(".button-container").classList.add("created");
+
+    let bc = this.container.querySelector(".button-container");
+
+    updateDisplay(bc.nextElementSibling, data);
+      bc
+        .querySelector(".collapsible")
+        .addEventListener("click", function () {
+          this.classList.toggle("active");
+          var content = bc.nextElementSibling;
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+      bc
+        .querySelector(".delete-collapsible")
+        .addEventListener("click", function () {
+          bc.classList.remove("created");
+          bc.classList.add("deleted");
+          deleteStoredFlight(data);
+        });
   }
 
   init() {
     let flights = getStoredFlights();
-    console.log(flights);
     this.container.innerHTML = flights.map(flightToHTML).join("");
 
     let col = this.container.querySelectorAll(".button-container");
