@@ -51,13 +51,13 @@ export function deleteStoredFlight(flight_data) {
 }
 
 export function updateDisplay(container, data) {
-  container.querySelector(".departing .airport").innerHTML = `Departure Airport ${data.dep_iata}`;
-  container.querySelector(".departing .terminal").innerHTML = `Departure Terminal ${data.dep_terminal}`;
-  container.querySelector(".departing .gate").innerHTML = `Departure Gate ${data.dep_gate}`;
-  container.querySelector(".departing .time").innerHTML = `Departure Time ${data.dep_time}`;
+  container.querySelector(".departing .airport").innerHTML = `Departure Airport ${data.dep_iata || "unassigned"}`;
+  container.querySelector(".departing .terminal").innerHTML = `Departure Terminal ${data.dep_terminal || "unassigned"}`;
+  container.querySelector(".departing .gate").innerHTML = `Departure Gate ${data.dep_gate || "unassigned"}`;
+  container.querySelector(".departing .time").innerHTML = `Departure Time ${data.dep_time || "unassigned"}`;
 
-  container.querySelector(".arriving .airport").innerHTML = `Arrival Airport ${data.arr_iata}`;
-  container.querySelector(".arriving .terminal").innerHTML = `Arrival Terminal ${data.arr_terminal}`;
-  container.querySelector(".arriving .gate").innerHTML = `Arrival Gate ${data.arr_gate}`;
-  container.querySelector(".arriving .time").innerHTML = `Arrival Time ${data.arr_time}`;
+  container.querySelector(".arriving .airport").innerHTML = `Arrival Airport ${data.arr_iata || "unassigned"}`;
+  container.querySelector(".arriving .terminal").innerHTML = `Arrival Terminal ${data.arr_terminal || "unassigned"}`;
+  container.querySelector(".arriving .gate").innerHTML = `Arrival Gate ${data.arr_gate || "unassigned"}`;
+  container.querySelector(".arriving .time").innerHTML = `Arrival Time ${data.arr_time || "unassigned"}`;
 }
