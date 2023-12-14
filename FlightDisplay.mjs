@@ -29,16 +29,23 @@ export default class FlightDisplay {
 
   submit() {
     let flight_code = this.container.querySelector("input").value;
-    this.container.querySelector("input").value = "";
     this.container.querySelector(".loading-text").style.display = "block";
 
     getFlightSchedule(flight_code).then(data => {
-      // TODO: if no flight, data is undef. handle error
       this.container.querySelector(".loading-text").style.display = "none";
-      updateDisplay(this.container, data)
-      this.container.querySelector(".flight-info-display").style.display = "flex";
-      storeFlight(data);
-      this.addFlightCallback(data);
+
+      if (!data) {
+        this.container.querySelector("input").setCustomValidity("Flight does not exist!");
+        this.container.querySelector("input").reportValidity();
+      } else {
+        this.container.querySelector("input").setCustomValidity("");
+        this.container.querySelector("input").reportValidity();
+        this.container.querySelector("input").value = "";
+        updateDisplay(this.container, data)
+        this.container.querySelector(".flight-info-display").style.display = "flex";
+        storeFlight(data);
+        this.addFlightCallback(data);
+      }
     });
   }
 }
